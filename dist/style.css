@@ -1,0 +1,312 @@
+html{
+    font-size: 20px;
+    font-family: 'Space Mono', monospace;
+}
+
+body{
+    margin: 0;
+
+}
+
+*{
+    box-sizing: border-box;
+}
+
+h1, p{
+    padding: 0;
+    margin: 0;
+}
+
+ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#content{
+    display: flex;
+    height: 90vh;
+}
+
+header{
+    height: 10vh;
+    display: flex;
+    background-color: white;
+}
+
+header h1{
+    font-size: 5vh;
+    margin: auto 1vh;
+}
+
+.left-nav{
+    width: 370px;
+    background-color: rgb(59, 61, 59);
+    color: white;
+    border-right: .2px solid white;
+}
+
+.left-nav ul{
+    margin-top: 10px;
+}
+
+.count{
+    padding-right: 10px;
+}
+
+.left-nav h1{
+    padding-left: 7px;
+    margin-left: 1px;
+}
+
+.top-nav{
+    margin-bottom: 20%;
+}
+
+.top-nav li a, .btm-nav li a{
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 5px 5px 5px;
+}
+
+.top-nav li a:hover, .btm-nav li a:hover{
+    background-color: rgb(139, 142, 139);
+}
+
+.top-nav li p, .btm-nav li p{
+    display: block;
+}
+
+.btm-nav > form{
+    display: flex;
+    align-items: center;
+    line-height: 100px;
+}
+
+
+.btm-nav input[type="text"]{
+    border-radius: 5px;
+    height: 41.818px;
+    width: 97%;
+    margin: 5px 0px 5px 5px; 
+    font-size: 1.2rem;
+    background-color: rgb(139, 142, 139);
+    outline: none;
+    border: none;
+}
+
+
+.btm-nav input[type="submit"]{
+    height: 41.8px;
+    background-color: inherit;
+    position: relative;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: white;
+    padding: 1px 8px;
+}
+
+
+
+
+.tasks-align{
+    width: 80%;
+}
+
+.tasks-container{
+    background-color: rgb(84, 85, 84);
+    width: 100%;
+}
+
+.initial-form{
+    display: flex;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.initial-form input[type="text"] {
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-left: 10px;
+    width: 90%;
+}
+
+.initial-form input[type="date"]{
+    height: 40px;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+input[type="date"]:focus{
+   outline: none;
+   border: none;
+}
+
+
+
+.details-form{
+    border: solid 1px black;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+/* .details-form label, .details-form input{
+    font-size: ;
+} */
+
+.content-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; 
+    border: none;
+    padding: 0px;
+}
+
+.content-visible {
+    max-height: 200px; 
+    overflow: hidden;
+    transition: max-height 0.5s ease-in;
+}
+
+.details-form label{
+    font-size: 10px;
+}
+
+textarea {
+    border: 1px solid #ccc; 
+    height: 50px;
+    width: 48vw;
+    margin-top: 5px;
+}
+
+.details-form input[type="date"]{
+    font-size: 10px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+
+.details-form button{
+    border: none;
+    font-size: 1rem;
+    border: 1px solid;
+    border-radius: 3px;
+    background-color: inherit;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-family: 'Space Mono', monospace;
+    transition: background-color 0.3s, color 0.3s ease-in-out;
+}
+
+.details-form button:hover{
+    background-color: black;
+    color: white;
+}
+
+
+
+
+
+.btm-nav input::placeholder{
+    color: white;
+    font-size: 1rem;
+    left: 8px;
+    bottom: 1px;
+    position: relative;
+}
+
+.initial-form button{
+    background-color: inherit;
+    font-size: 30px;
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+.tasks-container h1{
+    background-color: rgb(59, 61, 59);
+    padding: 20px 0 0 20px;
+    color: white;
+}
+
+.tasks{
+    margin-top: 10px;
+}
+
+.tasks-info{
+    display: flex;
+    align-items: center;
+}
+
+.task-title, .task-info{
+    display: flex;
+    align-items: center;
+}
+
+.task-date{
+    margin-left: 5px;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 12px;
+    height: 33px;
+    color: white;
+    padding: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.crossed-out{
+    text-decoration: line-through;
+}
+
+.task:hover{
+    background-color: rgb(139, 142, 139);
+}
+
+.edit-svg, .delete-svg{
+    fill: white;
+    height: 29px;
+    transition: transform ease-in-out 0.3s; 
+    display: flex;
+}
+
+.edit-svg:hover, .delete-svg:hover{
+    transform: scale(1.2)
+}
+
+
+input[type ="checkbox"]{
+    margin: 0;
+    margin-right: 5px;
+}
+

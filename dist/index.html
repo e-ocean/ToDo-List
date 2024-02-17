@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="bundle.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>To-Do List</h1>
+    </header>
+    <div id="content">
+        <div class="left-nav">
+            <ul class="top-nav">
+                <li>
+                    <a href="">
+                        <p>All Tasks</p>
+                        <p class="all-count">0</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <p>Today</p>
+                        <p class="today-count">0</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <p>Next 7 days</p>
+                        <p class="seven-count">0</p>
+                    </a>   
+                </li>
+            </ul>
+            <div class="btm-nav">
+                <h1>Projects</h1>
+                <form class="create-project" action="">
+                    <input type="text" placeholder="Enter project name " required>
+                    <input type="submit" value="+">
+                </form>
+               
+               
+
+                <ul class="projects-ul">
+                    <!-- projects go here -->
+                </ul>
+
+            </div>
+        </div>
+        <div class="tasks-container">
+            <h1>All Tasks</h1>
+            <div class="tasks-align">
+                <form action="" class="initial-form">
+                    <input type="text" name ="task-title" id="task" placeholder=" Add tasks to today" required>
+                    <input type="date" required>
+                    <button class="initial-submit" type="submit">+</button>
+                </form>
+
+                <form action="" class="details-form content-hidden" >
+                    <div>
+                        <label for="title">Task title:</label>
+                        <input type="text" id="title">
+                        <label for="project-options">Poject:</label>
+                        <select name="projects" id="project-options">
+                            <option value="Default">Default</option>
+                        </select>
+                        <label for="due-date">Due date:</label>
+                        <input type="date" id="due-date">
+                    </div>
+                    <div>
+                        <textarea id="details" name="details" placeholder="Task details"></textarea>
+                    </div>
+                 
+                    <!-- <div class="due-date-div">
+                        <label for="due-date">Due date:</label>
+                        <input type="date" id="due-date">
+                    </div> -->
+                    <div>
+                        <button type="submit" class="submit-det-btn">Add</button>
+                    </div>
+                </form>
+
+                <div class="tasks">
+       
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+</body>
+</html>

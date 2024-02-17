@@ -1,8 +1,4 @@
-// import { format } from 'date-fns';
-// import { add } from 'date-fns'
-
-import {initialState, initializeEventListeners} from './domHandler';
-// import './style.css';
+import {initializeEventListeners, initialState} from './domHandler';
 
 
 document.addEventListener('DOMContentLoaded', function() {

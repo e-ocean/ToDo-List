@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { createToDo, projects, updateToDo, createProject, deleteTask, toggleCompletetion } from './taskManager';
+import { createToDo, getStorageProjects, updateToDo, createProject, deleteTask, toggleCompletetion } from './taskManager';
 
 
 const initialForm = document.querySelector('.initial-form')
@@ -11,24 +11,20 @@ const detailsDate = document.querySelector("#due-date")
 const detailsDesc = document.querySelector("#details")
 const projectForm = document.querySelector(".create-project")
 
+// retrieve stored projects from localStorage, if there are no stored projects, initialize an array of project objects
+let storedProjects 
+
+
 let currentTask
 let currentProject 
+
 let formMode = 'create'
 
 
-// const selectEl = document.querySelector("#project-options")
-const selectEl = document.querySelector("#project-options")
 
+const selectEl = document.querySelector("#project-options")
 const tasksDiv = document.querySelector("#content > div.tasks-container > div > div")
 const projectsUl = document.querySelector(".projects-ul")
-
-//sets date to today by default in the initial form
-
-function initialState(){
-    displayAllTasks()
-    displayProjects()
-    setInitialDate()
-}
 
 
 function initializeEventListeners() {
@@ -47,6 +43,12 @@ function setInitialDate(){
     return date
 }
 
+
+function initialState(){
+    setInitialDate()
+    displayAllTasks()
+    displayProjects()
+}
 
 //function to display form for user to input task details
 function submitInitialForm(e) {
@@ -138,7 +140,7 @@ function openEditForm(evt) {
 
 function updatePrjctDropdown(){
     selectEl.innerHTML = ''
-    projects.forEach(project => { 
+    storedProjects.forEach(project => { 
         const newOption = document.createElement("option")
         newOption.innerText = project.name
         selectEl.appendChild(newOption)
@@ -162,8 +164,9 @@ function getClickedTask(evt) {
     if (taskEl){
         const taskTitle = taskEl.getAttribute('data-task-title');
         const taskProject = taskEl.getAttribute('data-project-name');
-        const project = projects.find(p => p.name === taskProject);
+        const project = storedProjects.find(p => p.name === taskProject);
         const clickedTask = project.tasks.find(task => task.title === taskTitle)
+        console.log(clickedTask)
         return {project: project, task: clickedTask }
     } else {
         console.log('Clicked task or project is undefined.');
@@ -208,7 +211,8 @@ function disableInitialInputs(bul){
 
 function displayProjects(){
     projectsUl.innerHTML = ''
-    for (let project of projects){
+    storedProjects = getStorageProjects()
+    for (let project of storedProjects){
         const projectLi = document.createElement('li')
         const a = document.createElement('a');
         a.href = '#'
@@ -225,7 +229,8 @@ function displayProjects(){
 
 function displayAllTasks(){
     tasksDiv.innerHTML = ''
-    for (let project of projects){
+    storedProjects = getStorageProjects()
+    for (let project of storedProjects){
         for (let task of project.tasks){
             const taskDiv = document.createElement("div")
             taskDiv.classList.add("task")
@@ -239,6 +244,7 @@ function displayAllTasks(){
             checkBoxEl.checked = task.checked
 
             const titleText = document.createElement('p');
+            titleText.classList.add("task-p")
             titleText.innerText = task.title
             if (task.checked === true){
                 titleText.classList.add('crossed-out')
@@ -276,4 +282,4 @@ function displayAllTasks(){
 }
 
 
-export {submitInitialForm, initialState, displayAllTasks, displayProjects, initializeEventListeners}
+export {submitInitialForm, displayAllTasks, displayProjects, initializeEventListeners, storedProjects, initialState}

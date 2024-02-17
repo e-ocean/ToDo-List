@@ -1,13 +1,35 @@
+import { getTime } from "date-fns";
+
+
+let storedProjects 
+
+
+function updateStoredProjects() {
+    localStorage.setItem('projects', JSON.stringify(storedProjects)); 
+}
+
+function getStorageProjects(){
+    const projectsData = localStorage.getItem('projects');
+    if(projectsData){
+        const projectsData = localStorage.getItem('projects');
+        storedProjects = JSON.parse(projectsData)
+        return storedProjects
+    }
+    else{
+        storedProjects = [{
+            name: "Default",
+            tasks: [ ]
+        }]
+        return storedProjects
+    } 
+}
+
+
 
 const weekTasks = []
 const allTasks = []
 
-const projects = [
-    {
-        name: "Default",
-        tasks: [ ]
-    }
-]
+
 
 let allTasksCount = 0
 
@@ -24,20 +46,23 @@ function createToDo(title, date, description, projectName){
     }
     allTasksCount++
     pushTaskToProject(task, projectName)
+    updateStoredProjects()
 }
 
 
 
 
+
+
 function pushTaskToProject(task, destProjectName){
-    let proj = projects.find(p => p.name === destProjectName)
+    let proj = storedProjects.find(p => p.name === destProjectName)
     proj.tasks.push(task)
     console.log('pushed task to project')
 }
 
 
 function deleteTask(task, projectName){
-    let proj = projects.find(p => p.name === projectName)
+    let proj = storedProjects.find(p => p.name === projectName)
     if (!proj) {
         console.error('Project not found:', projectName);
         return; // Exit the function if the project is not found
@@ -46,6 +71,7 @@ function deleteTask(task, projectName){
     let index = tasksArray.indexOf(task)
     proj.tasks.splice(index, 1)
     console.log("deleted task successfully")
+    updateStoredProjects()
     return task
 }
 
@@ -53,8 +79,10 @@ function deleteTask(task, projectName){
 function toggleCompletetion(task){
     if (task.checked === false){
         task.checked = true
+        updateStoredProjects()
     } else if (task.checked === true){
         task.checked = false
+        updateStoredProjects()
     }
 }
 
@@ -64,14 +92,16 @@ function updateToDo(task, newTitle, newDate, newDesc, newProjName){
     task.title = newTitle
     task.date = newDate
     task.description = newDesc
-    let curProj = projects.find(p => p.name === task.project)
+    updateStoredProjects()
+    let curProj = storedProjects.find(p => p.name === task.project)
 
     if (curProj.name !== newProjName){
         console.log('changing project')
         let taskToMove = deleteTask(task, curProj.name)
-        let destinationProj = projects.find(p => p.name === newProj)
+        let destinationProj = storedProjects.find(p => p.name === newProj)
         task.project = newProj
         destinationProj.tasks.push(taskToMove)
+        updateStoredProjects()
     } else{
         console.log('same project')
     }
@@ -81,7 +111,8 @@ function updateToDo(task, newTitle, newDate, newDesc, newProjName){
 
 function createProject(title){
     const project = {name: title, tasks: []}    
-    projects.push(project)
+    storedProjects.push(project)
+    updateStoredProjects()
 }
 
 
@@ -90,4 +121,4 @@ function createProject(title){
 
 
 
-export {createToDo, projects, createProject, updateToDo, deleteTask, toggleCompletetion}
+export {createToDo, getStorageProjects, createProject, updateToDo, deleteTask, toggleCompletetion}
